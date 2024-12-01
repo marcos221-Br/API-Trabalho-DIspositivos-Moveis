@@ -12,6 +12,5 @@ import lombok.Setter;
 public class RestErrorMessage {
     
     private HttpStatus status;
-
     private String message;
 }

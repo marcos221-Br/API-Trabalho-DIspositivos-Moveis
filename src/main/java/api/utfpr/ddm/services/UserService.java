@@ -17,10 +17,10 @@ public class UserService {
     private UserRepository userRepository;
 
     public User createUser(User user){
-        try {
+        try{
             return this.userRepository.save(user);
-        } catch (DataIntegrityViolationException e) {
-            throw new DuplicateEntryException("Email já utilizado por outro usuário");
+        }catch(DataIntegrityViolationException e){
+            throw new DuplicateEntryException("Email já cadastrado!");
         }
     }
 
@@ -28,20 +28,20 @@ public class UserService {
         return this.userRepository.findAll();
     }
 
-    public User getUser(String email){
-        return this.userRepository.findByEmail(email);
+    public User getUserByEmail(String email){
+        return this.userRepository.findByEmail(email).get();
     }
 
     public User updateUser(Integer id, User user){
         user.setId(id);
-        try {
+        try{
             return this.userRepository.save(user);
-        } catch (DataIntegrityViolationException e) {
-            throw new DuplicateEntryException("Email já utilizado por outro usuário");
+        }catch(DataIntegrityViolationException e){
+            throw new DuplicateEntryException("Email já cadastrado por outro usuário!");
         }
     }
 
-    public void deleteUser(User user){
-        this.userRepository.delete(user);
+    public void deleteUser(Integer id){
+        this.userRepository.deleteById(id);
     }
 }
