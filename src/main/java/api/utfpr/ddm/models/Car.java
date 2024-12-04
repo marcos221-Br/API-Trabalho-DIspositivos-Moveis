@@ -94,12 +94,7 @@ public class Car implements Serializable{
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @Basic(optional = false)
-    @ManyToOne
-    @JoinColumn(name = "address", referencedColumnName = "id", nullable = false)
-    private Address address;
-
-    public Car(String brand, String model, Integer year, Double price, Integer mileage, String fuel, String transmission, String color, Integer power, Integer displacement, String status, String description, Date created, Date updated, User user, Address address){
+    public Car(String brand, String model, Integer year, Double price, Integer mileage, String fuel, String transmission, String color, Integer power, Integer displacement, String status, String description, Date created, Date updated, User user){
         this.brand = brand;
         this.model = model;
         this.year = year;
@@ -109,12 +104,10 @@ public class Car implements Serializable{
         this.transmission = transmission;
         this.color = color;
         this.power = power;
-        this.displacement = displacement;
         this.status = status;
         this.description = description;
         this.created = created;
         this.updated = updated;
         this.user = user;
-        this.address = address;
     }
 }

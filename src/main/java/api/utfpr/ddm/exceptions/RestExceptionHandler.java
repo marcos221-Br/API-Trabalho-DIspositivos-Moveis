@@ -32,4 +32,10 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         RestErrorMessage response = new RestErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
     }
+    
+    @ExceptionHandler(AlreadyExistsException.class)
+    private ResponseEntity<RestErrorMessage> alreadExistHandler(AlreadyExistsException exeption){
+        RestErrorMessage response = new RestErrorMessage(HttpStatus.UNPROCESSABLE_ENTITY, exeption.getMessage());
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(response);
+    }
 }
