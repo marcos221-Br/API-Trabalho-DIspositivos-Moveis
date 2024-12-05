@@ -70,10 +70,6 @@ public class Car implements Serializable{
     private Integer power;
 
     @Basic(optional = false)
-    @Column(name = "displacement", nullable = false)
-    private Integer displacement;
-
-    @Basic(optional = false)
     @Column(name = "status", nullable = false)
     private String status;
 
@@ -94,7 +90,7 @@ public class Car implements Serializable{
     @JoinColumn(name = "user", referencedColumnName = "id", nullable = false)
     private User user;
 
-    public Car(String brand, String model, Integer year, Double price, Integer mileage, String fuel, String transmission, String color, Integer power, Integer displacement, String status, String description, Date created, Date updated, User user){
+    public Car(String brand, String model, Integer year, Double price, Integer mileage, String fuel, String transmission, String color, Integer power, String status, String description, Date created, Date updated, User user){
         this.brand = brand;
         this.model = model;
         this.year = year;

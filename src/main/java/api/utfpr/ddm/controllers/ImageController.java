@@ -32,7 +32,7 @@ public class ImageController {
 
     @PostMapping
     public ImageResponseDto createImage(@RequestParam("file") MultipartFile file){
-        return ImageResponseDto.imageDTO(imageService.createImage(file));
+        return ImageResponseDto.imageDto(imageService.createImage(file));
     }
 
     @GetMapping
@@ -40,7 +40,7 @@ public class ImageController {
         List<Image> images = this.imageService.getAllImages();
         List<ImageResponseDto> ImageResponseDtos = new ArrayList<>();
         for (Image image : images){
-            ImageResponseDtos.add(ImageResponseDto.imageDTO(image));
+            ImageResponseDtos.add(ImageResponseDto.imageDto(image));
         }
         return ImageResponseDtos;
     }
@@ -58,7 +58,7 @@ public class ImageController {
 
     @PutMapping("/{id}")
     public ImageResponseDto updateImage(@PathVariable Integer id, @RequestParam("file") MultipartFile file){
-        return ImageResponseDto.imageDTO(imageService.updateImage(id, file));
+        return ImageResponseDto.imageDto(imageService.updateImage(id, file));
     }
 
     @DeleteMapping("/{id}")

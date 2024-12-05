@@ -14,6 +14,19 @@ Dependências:
     > WildFly
 ```
 
+## Configuração
+
+Antes de realizar a instação é necessário configurar o software:
+
+```
+./src/main/resources/application.properties
+    > server.port=<porta>
+    > spring.datasource.url=jdbc:mysql://<ip>:<porta>/<banco>
+    > spring.datasource.username=<usuário>
+    > spring.datasource.password=<senha>
+    > security.jwt.secret-key=<secret-key JWT>
+```
+
 ## Instalação
 
 Realizando a Instalação
@@ -28,41 +41,10 @@ Realizando a Instalação
 
 ## Documentação da API
 
-#### Endpoints
+#### Swagger
 
-Todas as requisições são realizadas por meio de protocolos *HTTP* definidos nos controllers:
-
-* /api/auth/login - Caminho para requisições de login de usuários;
-* /api/auth/signup - Caminho para requisições de cadastro de usuários;
-* /api/user - Caminho para requisições utilizadas no CRUD de usuários;
-* /api/address - Caminho para requisições utilizadas no CRUD de endereços;
-
-## Uso/Exemplos
-
-#### Login / SignUp
-
-```http
-> POST /api/auth/login
-> POST /api/auth/signup
 ```
-
-#### Usuário
-
-```http
-> GET /api/user
-> GET /api/user/${email}
-> PUT /api/user/${id}
-> DELETE /api/user/${id}
-```
-
-#### Endereços
-
-```http
-> GET /api/address
-> GET /api/address/${id}
-> POST /api/address
-> PUT /api/address/${id}
-> DELETE /api/address/${id}
+http://<ip>:<port>/swagger-ui/index.html#/
 ```
 
 ## Solução de problemas

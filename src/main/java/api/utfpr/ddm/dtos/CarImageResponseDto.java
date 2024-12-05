@@ -14,6 +14,6 @@ public class CarImageResponseDto {
     private ImageResponseDto imagem;
 
     public static CarImageResponseDto carImageDto(CarImage carImage){
-        return new CarImageResponseDto(CarResponseDto.carDto(carImage.getCar()), ImageResponseDto.imageDto(carImage.getImage()));
+        return new CarImageResponseDto(carImage.getId(), CarResponseDto.carDto(carImage.getCar()), ImageResponseDto.imageDto(carImage.getImage()));
     }
 }

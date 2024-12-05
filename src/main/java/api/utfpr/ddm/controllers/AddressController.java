@@ -33,11 +33,11 @@ public class AddressController {
     @GetMapping
     public List<AddressResponseDto> getAllAddresses(){
         List<Address> addresses = this.addressService.getAllAddresses();
-        List<AddressResponseDto> AddressResponseDtos = new ArrayList<>();
+        List<AddressResponseDto> addressResponseDtos = new ArrayList<>();
         for (Address address : addresses){
-            AddressResponseDtos.add(AddressResponseDto.addressDto(address));
+            addressResponseDtos.add(AddressResponseDto.addressDto(address));
         }
-        return AddressResponseDtos;
+        return addressResponseDtos;
     }
 
     @GetMapping("/{id}")

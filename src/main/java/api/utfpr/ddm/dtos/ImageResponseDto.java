@@ -12,7 +12,7 @@ public class ImageResponseDto {
     private Integer id;
     private String image;
 
-    public static ImageResponseDto imageDTO(Image image){
+    public static ImageResponseDto imageDto(Image image){
         try{
             return new ImageResponseDto(image.getId(),image.getImage());
         }catch(NullPointerException e){
