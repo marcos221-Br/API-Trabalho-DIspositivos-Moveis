@@ -43,17 +43,17 @@ public class ImageService {
 		}
 	}
 
-    @SuppressWarnings("null")
     public Image createImage(MultipartFile file) {
         Image image = new Image();
-		Path destinationFile = this.rootLocation.resolve(System.currentTimeMillis()+"."+file.getContentType().split("/")[1]).normalize().toAbsolutePath();
-		try (InputStream inputStream = file.getInputStream()) {
-			Files.copy(inputStream, destinationFile);
+        @SuppressWarnings("null")
+        Path destinationFile = this.rootLocation.resolve(System.currentTimeMillis()+"."+file.getContentType().split("/")[1]).normalize().toAbsolutePath();
+        try(InputStream inputStream = file.getInputStream()){
+            Files.copy(inputStream, destinationFile);
             image.setImage(destinationFile.getFileName()+"");
             return this.imageRepository.save(image);
-		}catch (Exception e) {
-			throw new AlreadyExistsException("Imagem duplicada enviada");
-		}
+        }catch(IOException e) {
+            throw new AlreadyExistsException("Imagem duplicada enviada!");
+        }
 	}
 
     public Image updateImage(Integer id, MultipartFile file){
