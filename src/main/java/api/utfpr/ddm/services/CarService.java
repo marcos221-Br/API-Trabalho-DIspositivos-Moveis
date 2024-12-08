@@ -35,7 +35,7 @@ public class CarService {
     }
 
     public List<Car> getCarByUser(Integer user){
-        return this.carRepository.findByUser(user);
+        return this.carRepository.findByUser_Id(user);
     }
 
     public Car updateCar(Integer id, Car car){

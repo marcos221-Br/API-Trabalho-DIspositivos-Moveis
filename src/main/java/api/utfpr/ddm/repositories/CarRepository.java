@@ -9,6 +9,5 @@ import api.utfpr.ddm.models.Car;
 
 public interface CarRepository extends JpaRepository<Car,Integer> {
     
-    @Query(value = "SELECT * FROM cars WHERE user?", nativeQuery = true)
-    public List<Car> findByUser(Integer user);
+    public List<Car> findByUser_Id(Integer user);
 }
