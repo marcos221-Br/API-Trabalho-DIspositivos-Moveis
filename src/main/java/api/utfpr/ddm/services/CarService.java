@@ -34,6 +34,10 @@ public class CarService {
         return this.carRepository.getReferenceById(id);
     }
 
+    public List<Car> getCarByUser(Integer user){
+        return this.carRepository.findByUser(user);
+    }
+
     public Car updateCar(Integer id, Car car){
         car.setId(id);
         return this.carRepository.save(car);

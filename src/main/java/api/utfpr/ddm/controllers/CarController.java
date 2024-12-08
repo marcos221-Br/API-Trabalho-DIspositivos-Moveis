@@ -45,6 +45,16 @@ public class CarController {
         return CarResponseDto.carDto(this.carService.getCar(id));
     }
 
+    @GetMapping("/user/{user}")
+    public List<CarResponseDto> getCarByUser(@PathVariable Integer user){
+        List<CarResponseDto> carResponseDtos = new ArrayList<>();
+        List<Car> cars = this.carService.getCarByUser(user);
+        for(Car car : cars){
+            carResponseDtos.add(CarResponseDto.carDto(car));
+        }
+        return carResponseDtos;
+    }
+
     @PutMapping("/{id}")
     public CarResponseDto updateCar(@PathVariable Integer id, @RequestBody CarDto carDto){
         return CarResponseDto.carDto(this.carService.updateCar(id, carDto.carObject()));
