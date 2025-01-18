@@ -1,6 +1,6 @@
 package api.utfpr.ddm.dtos;
 
-import api.utfpr.ddm.models.User;
+import api.utfpr.ddm.models.Usuario;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +11,9 @@ public class LoginResponseDto {
     
     private String token;
     private long expiresIn;
-    private UserResponseDto usuario;
+    private UsuarioResponseDto usuario;
 
-    public static LoginResponseDto loginDto(String token, long expirationTime, User user){
-        return new LoginResponseDto(token, expirationTime, UserResponseDto.userDto(user));
+    public static LoginResponseDto loginDto(String token, long expirationTime, Usuario usuario){
+        return new LoginResponseDto(token, expirationTime, UsuarioResponseDto.userDto(usuario));
     }
 }

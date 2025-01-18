@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,15 +17,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "images")
+@Table(name = "carroimagens")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class Image implements Serializable{
-    
-    private static final long serialVersionUID = 1L;
+public class CarroImagem implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -31,10 +33,17 @@ public class Image implements Serializable{
     private Integer id;
 
     @Basic(optional = false)
-    @Column(name = "image")
-    private String image;
+    @ManyToOne
+    @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false)
+    private Carro carro;
 
-    public Image(String image){
-        this.image = image;
+    @Basic(optional = false)
+    @ManyToOne
+    @JoinColumn(name = "imagem", referencedColumnName = "id", nullable = false)
+    private Imagem imagem;
+
+    public CarroImagem(Carro carro, Imagem imagem){
+        this.carro = carro;
+        this.imagem = imagem;
     }
 }

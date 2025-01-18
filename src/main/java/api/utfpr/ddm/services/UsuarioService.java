@@ -7,32 +7,32 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import api.utfpr.ddm.exceptions.DuplicateEntryException;
-import api.utfpr.ddm.models.User;
+import api.utfpr.ddm.models.Usuario;
 import api.utfpr.ddm.repositories.UserRepository;
 
 @Service
-public class UserService {
+public class UsuarioService {
     
     @Autowired
     private UserRepository userRepository;
 
-    public User createUser(User user){
+    public Usuario createUser(Usuario usuario){
         try{
-            return this.userRepository.save(user);
+            return this.userRepository.save(usuario);
         }catch(DataIntegrityViolationException e){
             throw new DuplicateEntryException("Email já cadastrado!");
         }
     }
 
-    public List<User> getAllUsers(){
+    public List<Usuario> getAllUsers(){
         return this.userRepository.findAll();
     }
 
-    public User getUserByEmail(String email){
+    public Usuario getUserByEmail(String email){
         return this.userRepository.findByEmail(email).get();
     }
 
-    public User updateUser(Integer id, User user){
+    public Usuario updateUser(Integer id, Usuario user){
         user.setId(id);
         try{
             return this.userRepository.save(user);

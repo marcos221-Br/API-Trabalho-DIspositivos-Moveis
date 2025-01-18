@@ -1,6 +1,6 @@
 package api.utfpr.ddm.dtos;
 
-import api.utfpr.ddm.models.Image;
+import api.utfpr.ddm.models.Imagem;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,11 +10,11 @@ import lombok.Getter;
 public class ImageResponseDto {
     
     private Integer id;
-    private String image;
+    private String imagem;
 
-    public static ImageResponseDto imageDto(Image image){
+    public static ImageResponseDto imageDto(Imagem image){
         try{
-            return new ImageResponseDto(image.getId(),image.getImage());
+            return new ImageResponseDto(image.getId(),image.getImagem());
         }catch(NullPointerException e){
             return null;
         }

@@ -2,7 +2,7 @@ package api.utfpr.ddm.dtos;
 
 import java.sql.Date;
 
-import api.utfpr.ddm.models.Car;
+import api.utfpr.ddm.models.Carro;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,9 +25,9 @@ public class CarResponseDto {
     private String descricao; // Description
     private Date dataCriacao; // Created
     private Date dataAtualizacao; // Updated
-    private UserResponseDto usuario; // User
+    private UsuarioResponseDto usuario; // User
 
-    public static CarResponseDto carDto(Car car){
-        return new CarResponseDto(car.getId(),car.getBrand(),car.getModel(),car.getYear(),car.getPrice(),car.getMileage(),car.getFuel(),car.getTransmission(),car.getColor(),car.getPower(),car.getStatus(),car.getDescription(),car.getCreated(),car.getUpdated(),UserResponseDto.userDto(car.getUser()));
+    public static CarResponseDto carDto(Carro car){
+        return new CarResponseDto(car.getId(),car.getMarca(),car.getModelo(),car.getAno(),car.getPreco(),car.getQuilometragem(),car.getCombustivel(),car.getTransmissao(),car.getCor(),car.getForca(),car.getStatus(),car.getDescricao(),car.getDataCriacao(),car.getDataAtualizacao(),UsuarioResponseDto.userDto(car.getUsuario()));
     }
 }

@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import api.utfpr.ddm.dtos.ImageResponseDto;
-import api.utfpr.ddm.models.Image;
-import api.utfpr.ddm.services.ImageService;
+import api.utfpr.ddm.models.Imagem;
+import api.utfpr.ddm.services.ImagemService;
 
 @RestController
 @RequestMapping("/api/image")
 public class ImageController {
 
     @Autowired
-    private ImageService imageService;
+    private ImagemService imageService;
 
     @PostMapping
     public ImageResponseDto createImage(@RequestParam("file") MultipartFile file){
-        return ImageResponseDto.imageDto(imageService.createImage(file));
+        return ImageResponseDto.imageDto(imageService.createImagem(file));
     }
 
     @GetMapping
     public List<ImageResponseDto> getAllImages(){
-        List<Image> images = this.imageService.getAllImages();
+        List<Imagem> images = this.imageService.getAllImagems();
         List<ImageResponseDto> ImageResponseDtos = new ArrayList<>();
-        for (Image image : images){
+        for (Imagem image : images){
             ImageResponseDtos.add(ImageResponseDto.imageDto(image));
         }
         return ImageResponseDtos;
@@ -45,7 +45,7 @@ public class ImageController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Resource> getImage(@PathVariable Integer id){
-        Resource file = this.imageService.getImage(id);
+        Resource file = this.imageService.getImagem(id);
 
         if (file == null){
             return ResponseEntity.notFound().build();
@@ -56,11 +56,11 @@ public class ImageController {
 
     @PutMapping("/{id}")
     public ImageResponseDto updateImage(@PathVariable Integer id, @RequestParam("file") MultipartFile file){
-        return ImageResponseDto.imageDto(imageService.updateImage(id, file));
+        return ImageResponseDto.imageDto(imageService.updateImagem(id, file));
     }
 
     @DeleteMapping("/{id}")
     public void deleteImage(@PathVariable Integer id){
-        this.imageService.deleteImage(id);
+        this.imageService.deleteImagem(id);
     }
 }

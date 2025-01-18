@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 import api.utfpr.ddm.configs.StorageConfig;
-import api.utfpr.ddm.services.ImageService;
+import api.utfpr.ddm.services.ImagemService;
 
 @SpringBootApplication
 @EnableConfigurationProperties(StorageConfig.class)
@@ -19,7 +19,7 @@ public class ApiDispositivosMoveisApplication {
 
 	@SuppressWarnings("unused")
 	@Bean
-	CommandLineRunner createDirectory(ImageService imageService){
+	CommandLineRunner createDirectory(ImagemService imageService){
 		return (args) -> {
 			imageService.createDirectory();
 		};

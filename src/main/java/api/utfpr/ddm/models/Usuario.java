@@ -13,8 +13,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,12 +20,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "users")
+@Table(name = "usuarios")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class User implements UserDetails{
+public class Usuario implements UserDetails{
     
     private static final long serialVersionUID = 1L;
 
@@ -38,42 +36,36 @@ public class User implements UserDetails{
     private Integer id;
 
     @Basic(optional = false)
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "nome", nullable = false)
+    private String nome;
 
     @Basic(optional = false)
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
     @Basic(optional = false)
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "senha", nullable = false)
+    private String senha;
 
     @Basic(optional = false)
-    @Column(name = "bornDate", nullable = false)
-    private Date bornDate;
+    @Column(name = "datanascimento", nullable = false)
+    private Date dataNascimento;
 
     @Basic(optional = false)
-    @Column(name = "cellphone", nullable = false)
-    private String cellphone;
+    @Column(name = "telefone", nullable = false)
+    private String telefone;
 
-    @Basic(optional = true)
-    @ManyToOne
-    @JoinColumn(name = "address", referencedColumnName = "id", nullable = true)
-    private Address address;
-
-    public User(String name, String email, String password, Date bornDate, String cellphone, Address address) {
-        this.name = name;
+    public Usuario(String nome, String email, String senha, Date dataNascimento, String telefone) {
+        this.nome = nome;
         this.email = email;
-        this.password = password;
-        this.bornDate = bornDate;
-        this.cellphone = cellphone;
-        this.address = address;
+        this.senha = senha;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
     }
 
-    public User(String email, String password){
+    public Usuario(String email, String senha){
         this.email = email;
-        this.password = password;
+        this.senha = senha;
     }
 
     @Override
@@ -104,5 +96,10 @@ public class User implements UserDetails{
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.senha;
     }
 }

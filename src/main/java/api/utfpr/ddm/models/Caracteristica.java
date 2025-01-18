@@ -17,12 +17,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "features")
+@Table(name = "caracteristicas")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public class Feature implements Serializable{
+public class Caracteristica implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
@@ -34,15 +34,15 @@ public class Feature implements Serializable{
 
     @Basic(optional = false)
     @ManyToOne
-    @JoinColumn(name = "car", referencedColumnName = "id", nullable = false)
-    private Car car;
+    @JoinColumn(name = "carro", referencedColumnName = "id", nullable = false)
+    private Carro carro;
 
     @Basic(optional = false)
-    @Column(name = "feature", nullable = false)
-    private String feature;
+    @Column(name = "caracteristica", nullable = false)
+    private String caracteristica;
 
-    public Feature(Car car, String feature){
-        this.car = car;
-        this.feature = feature;
+    public Caracteristica(Carro carro, String caracteristica){
+        this.carro = carro;
+        this.caracteristica = caracteristica;
     }
 }

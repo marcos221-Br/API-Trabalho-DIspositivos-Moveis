@@ -2,8 +2,8 @@ package api.utfpr.ddm.dtos;
 
 import java.sql.Date;
 
-import api.utfpr.ddm.models.Car;
-import api.utfpr.ddm.models.User;
+import api.utfpr.ddm.models.Carro;
+import api.utfpr.ddm.models.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @ToString
-public class CarDto {
+public class CarroDto {
     
     private String marca; // Brand
     private String modelo; // Model
@@ -26,9 +26,9 @@ public class CarDto {
     private String descricao; // Description
     private Date dataCriacao; // Created
     private Date dataAtualizacao; // Updated
-    private User usuario; // User
+    private Usuario usuario; // User
 
-    public Car carObject(){
-        return new Car(marca, modelo, ano, preco, quilometragem, tipoCombustivel, transmissao, cor, potencia, status, descricao, Date.valueOf(dataCriacao.toLocalDate().plusDays(1)), Date.valueOf(dataAtualizacao.toLocalDate().plusDays(1)), usuario);
+    public Carro carroObjeto(){
+        return new Carro(marca, modelo, ano, preco, quilometragem, tipoCombustivel, transmissao, cor, potencia, status, descricao, Date.valueOf(dataCriacao.toLocalDate().plusDays(1)), Date.valueOf(dataAtualizacao.toLocalDate().plusDays(1)), usuario);
     }
 }

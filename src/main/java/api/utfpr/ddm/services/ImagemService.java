@@ -19,18 +19,18 @@ import api.utfpr.ddm.configs.StorageConfig;
 import api.utfpr.ddm.exceptions.AlreadyExistsException;
 import api.utfpr.ddm.exceptions.StorageException;
 import api.utfpr.ddm.exceptions.StorageFileNotFoundException;
-import api.utfpr.ddm.models.Image;
-import api.utfpr.ddm.repositories.ImageRepository;
+import api.utfpr.ddm.models.Imagem;
+import api.utfpr.ddm.repositories.ImagemRepository;
 
 @Service
-public class ImageService {
+public class ImagemService {
     
     @Autowired
-    private ImageRepository imageRepository;
+    private ImagemRepository imagemRepository;
 
     private final Path rootLocation;
 
-    public ImageService(StorageConfig properties) {
+    public ImagemService(StorageConfig properties) {
 		this.rootLocation = Paths.get(properties.getLocation());
 	}
 
@@ -43,37 +43,37 @@ public class ImageService {
 		}
 	}
 
-    public Image createImage(MultipartFile file) {
-        Image image = new Image();
+    public Imagem createImagem(MultipartFile file) {
+        Imagem imagem = new Imagem();
         @SuppressWarnings("null")
         Path destinationFile = this.rootLocation.resolve(System.currentTimeMillis()+"."+file.getContentType().split("/")[1]).normalize().toAbsolutePath();
         try(InputStream inputStream = file.getInputStream()){
             Files.copy(inputStream, destinationFile);
-            image.setImage(destinationFile.getFileName()+"");
-            return this.imageRepository.save(image);
+            imagem.setImagem(destinationFile.getFileName()+"");
+            return this.imagemRepository.save(imagem);
         }catch(IOException e) {
             throw new AlreadyExistsException("Imagem duplicada enviada!");
         }
 	}
 
-    public Image updateImage(Integer id, MultipartFile file){
-        Image image = this.imageRepository.getReferenceById(id);
-        Path destinationFile = this.rootLocation.resolve(image.getImage()).normalize().toAbsolutePath();
+    public Imagem updateImagem(Integer id, MultipartFile file){
+        Imagem imagem = this.imagemRepository.getReferenceById(id);
+        Path destinationFile = this.rootLocation.resolve(imagem.getImagem()).normalize().toAbsolutePath();
         try (InputStream inputStream = file.getInputStream()) {
             Files.copy(inputStream, destinationFile, StandardCopyOption.REPLACE_EXISTING);
-            return image;
+            return imagem;
         }catch (IOException e) {
             throw new StorageException("Falha ao armazenar imagem");
         }
     }
 
-    public List<Image> getAllImages(){
-        return this.imageRepository.findAll();
+    public List<Imagem> getAllImagems(){
+        return this.imagemRepository.findAll();
     }
 
-    public Resource getImage(Integer id){
+    public Resource getImagem(Integer id){
         try {
-            Path file = rootLocation.resolve(this.imageRepository.getReferenceById(id).getImage());
+            Path file = rootLocation.resolve(this.imagemRepository.getReferenceById(id).getImagem());
             Resource resource = new UrlResource(file.toUri());
             return resource;
         }catch (MalformedURLException e){
@@ -81,7 +81,7 @@ public class ImageService {
         }
     }
 
-    public void deleteImage(Integer id){
-        this.imageRepository.deleteById(id);
+    public void deleteImagem(Integer id){
+        this.imagemRepository.deleteById(id);
     }
 }
