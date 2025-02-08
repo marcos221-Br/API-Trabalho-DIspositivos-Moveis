@@ -25,13 +25,9 @@ public class CarroImagemController {
     @Autowired
     private CarroImagemService carroImagemService;
 
-    @PostMapping
-    public List<CarroImagemResponseDto> createCarroImagem(@RequestBody CarroImagemDto carroImagemDto){
-        List<CarroImagemResponseDto> carroImagemResponseDtos = new ArrayList<>();
-        for (CarroImagem carroImagem : carroImagemDto.carroImagemObject()) {
-            carroImagemResponseDtos.add(CarroImagemResponseDto.carroImagemDto(this.carroImagemService.createCarroImagem(carroImagem)));
-        }
-        return carroImagemResponseDtos;
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public CarroImagemResponseDto createCarroImagem(@RequestBody CarroImagemDto carroImagemDto){
+        return CarroImagemResponseDto.carroImagemDto(this.carroImagemService.createCarroImagem(carroImagemDto.carroImagemObject()));
     }
 
     @GetMapping("/{car}")
@@ -46,7 +42,7 @@ public class CarroImagemController {
 
     @PutMapping("/{id}")
     public CarroImagemResponseDto updateCarroImagem(@PathVariable Integer id, @RequestBody CarroImagemDto carroImagemDto){
-        return CarroImagemResponseDto.carroImagemDto(this.carroImagemService.updateCarroImagem(id, carroImagemDto.carroImagemObject().getFirst()));
+        return CarroImagemResponseDto.carroImagemDto(this.carroImagemService.updateCarroImagem(id, carroImagemDto.carroImagemObject()));
     }
 
     @DeleteMapping("/{id}")

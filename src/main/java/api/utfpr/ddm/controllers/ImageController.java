@@ -29,7 +29,7 @@ public class ImageController {
     private ImagemService imageService;
 
     @PostMapping
-    public ImageResponseDto createImage(@RequestParam("file") MultipartFile file){
+    public ImageResponseDto createImage(@RequestParam MultipartFile file){
         return ImageResponseDto.imageDto(imageService.createImagem(file));
     }
 

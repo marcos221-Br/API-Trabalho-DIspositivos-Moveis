@@ -1,8 +1,5 @@
 package api.utfpr.ddm.dtos;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import api.utfpr.ddm.models.Carro;
 import api.utfpr.ddm.models.CarroImagem;
 import api.utfpr.ddm.models.Imagem;
@@ -14,13 +11,9 @@ import lombok.ToString;
 public class CarroImagemDto {
     
     private Carro carro;
-    private List<Imagem> imagens;
+    private Imagem imagem;
 
-    public List<CarroImagem> carroImagemObject(){
-        List<CarroImagem> carroImagems = new ArrayList<>();
-        for(Imagem imagem : imagens){
-            carroImagems.add(new CarroImagem(carro, imagem));
-        }
-        return carroImagems;
+    public CarroImagem carroImagemObject(){
+        return new CarroImagem(carro, imagem);
     }
 }

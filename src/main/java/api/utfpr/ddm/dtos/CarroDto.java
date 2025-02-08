@@ -25,10 +25,9 @@ public class CarroDto {
     private String status;
     private String descricao; // Description
     private Date dataCriacao; // Created
-    private Date dataAtualizacao; // Updated
     private Usuario usuario; // User
 
     public Carro carroObjeto(){
-        return new Carro(marca, modelo, ano, preco, quilometragem, tipoCombustivel, transmissao, cor, potencia, status, descricao, Date.valueOf(dataCriacao.toLocalDate().plusDays(1)), Date.valueOf(dataAtualizacao.toLocalDate().plusDays(1)), usuario);
+        return new Carro(marca, modelo, ano, preco, quilometragem, tipoCombustivel, transmissao, cor, potencia, status, descricao, Date.valueOf(dataCriacao.toLocalDate().plusDays(1)), usuario);
     }
 }

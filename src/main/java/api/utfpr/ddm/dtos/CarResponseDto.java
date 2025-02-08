@@ -24,10 +24,9 @@ public class CarResponseDto {
     private String status;
     private String descricao; // Description
     private Date dataCriacao; // Created
-    private Date dataAtualizacao; // Updated
     private UsuarioResponseDto usuario; // User
 
     public static CarResponseDto carDto(Carro car){
-        return new CarResponseDto(car.getId(),car.getMarca(),car.getModelo(),car.getAno(),car.getPreco(),car.getQuilometragem(),car.getCombustivel(),car.getTransmissao(),car.getCor(),car.getForca(),car.getStatus(),car.getDescricao(),car.getDataCriacao(),car.getDataAtualizacao(),UsuarioResponseDto.userDto(car.getUsuario()));
+        return new CarResponseDto(car.getId(),car.getMarca(),car.getModelo(),car.getAno(),car.getPreco(),car.getQuilometragem(),car.getCombustivel(),car.getTransmissao(),car.getCor(),car.getPotencia(),car.getStatus(),car.getDescricao(),car.getDataCriacao(),UsuarioResponseDto.userDto(car.getUsuario()));
     }
 }

@@ -3,10 +3,12 @@ package api.utfpr.ddm.dtos;
 import api.utfpr.ddm.models.CarroImagem;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
+@Getter
 public class CarroImagemResponseDto {
 
     private Integer id;

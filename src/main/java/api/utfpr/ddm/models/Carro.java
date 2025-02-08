@@ -66,8 +66,8 @@ public class Carro implements Serializable{
     private String cor;
 
     @Basic(optional = false)
-    @Column(name = "forca", nullable = false)
-    private Integer forca;
+    @Column(name = "potencia", nullable = false)
+    private Integer potencia;
 
     @Basic(optional = false)
     @Column(name = "status", nullable = false)
@@ -81,18 +81,14 @@ public class Carro implements Serializable{
     @Column(name = "datacriacao", nullable = false)
     private Date dataCriacao;
 
-    @Basic(optional = true)
-    @Column(name = "dataatualizacao")
-    private Date dataAtualizacao;
-
     @Basic(optional = false)
     @ManyToOne
     @JoinColumn(name = "usuario", referencedColumnName = "id", nullable = false)
     private Usuario usuario;
 
     public Carro(String marca, String modelo, Integer ano, Double preco, Integer quilometragem, String combustivel,
-            String transmissao, String cor, Integer forca, String status, String descricao, Date dataCriacao,
-            Date dataAtualizacao, Usuario usuario) {
+            String transmissao, String cor, Integer potencia, String status, String descricao, Date dataCriacao,
+            Usuario usuario) {
         this.marca = marca;
         this.modelo = modelo;
         this.ano = ano;
@@ -101,11 +97,14 @@ public class Carro implements Serializable{
         this.combustivel = combustivel;
         this.transmissao = transmissao;
         this.cor = cor;
-        this.forca = forca;
+        this.potencia = potencia;
         this.status = status;
         this.descricao = descricao;
         this.dataCriacao = dataCriacao;
-        this.dataAtualizacao = dataAtualizacao;
         this.usuario = usuario;
+    }
+
+    public Carro(Integer id){
+        this.id = id;
     }
 }
