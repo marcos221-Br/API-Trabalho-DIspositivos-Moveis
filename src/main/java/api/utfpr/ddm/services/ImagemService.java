@@ -45,7 +45,6 @@ public class ImagemService {
 
     public Imagem createImagem(MultipartFile file) {
         Imagem imagem = new Imagem();
-        @SuppressWarnings("null")
         Path destinationFile = this.rootLocation.resolve(System.currentTimeMillis()+"."+file.getContentType().split("/")[1]).normalize().toAbsolutePath();
         try(InputStream inputStream = file.getInputStream()){
             Files.copy(inputStream, destinationFile);
